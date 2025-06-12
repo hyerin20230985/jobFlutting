@@ -1,0 +1,51 @@
+name: flutter_final_appproject
+description: "A new Flutter project."
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  flutter_dotenv: ^5.1.0
+  http: ^0.13.5
+  flutter_localizations:
+    sdk: flutter
+  flutter_animate: ^4.5.2
+
+dev_dependencies:
+  flutter_native_splash: ^2.3.2
+
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: images/logo.png
+  android: true
+  ios: true
+  web: false
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - images/
+    - fonts/
+    - .env
+  fonts:
+    - family: 'Noto Sans KR'
+      fonts:
+        - asset: fonts/NotoSansKR-Bold.ttf
+        - asset: fonts/NotoSansKR-Medium.ttf
+        - asset: fonts/NotoSansKR-Regular.ttf
