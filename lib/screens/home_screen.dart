@@ -1,9 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_final_appproject/screens/interview_screen.dart';
 import '../data/mock_data.dart';
+import 'dart:async';
 
-class HomeScreen extends StatelessWidget {
+// HomeScreen은 StatefulWidget으로, 상태를 관리합니다.
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+// _HomeScreenState는 HomeScreen의 상태를 관리합니다.
+class _HomeScreenState extends State<HomeScreen> {
+  final PageController _pageController = PageController();
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    // 3초마다 자동 슬라이드
+    _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
+      // 현재 페이지가 마지막 페이지면 첫 페이지로 이동
+      if (_pageController.page == mockJobPostings.length - 1) {
+        _pageController.animateToPage(
+          0,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
+      } else {
+        // 아니라면 다음 페이지로 이동
+        _pageController.nextPage(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +80,16 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(height: 8),
                         SizedBox(
                           height: 200,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
+                          child: PageView.builder(
+                            controller: _pageController, // 페이지뷰 컨트롤러
                             itemCount: mockJobPostings.length,
                             itemBuilder: (context, index) {
                               final job = mockJobPostings[index];
                               return Card(
-                                margin: const EdgeInsets.only(right: 16),
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
                                 child: Container(
-                                  width: 280,
                                   padding: const EdgeInsets.all(16),
                                   child: Column(
                                     crossAxisAlignment:
@@ -143,6 +185,14 @@ class HomeScreen extends StatelessWidget {
                                 ElevatedButton(
                                   onPressed: () {
                                     //TODO: 면접 시뮬레이터로 이동
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder:
+                                            (context) =>
+                                                const InterviewScreen(),
+                                      ),
+                                    );
                                   },
                                   child: const Text('면접 시작하기'),
                                 ),
