@@ -4,6 +4,7 @@ import 'package:flutter_final_appproject/screens/home_screen.dart';
 import 'package:flutter_final_appproject/screens/interview_screen.dart';
 import 'package:flutter_final_appproject/screens/job_list_screen.dart';
 import 'package:flutter_final_appproject/screens/policy_screen.dart';
+import 'package:flutter_final_appproject/screens/splash_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
@@ -40,7 +41,8 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [Locale('ko', 'KR')],
-      home: const MainScreen(),
+      //home: const MainScreen(),
+      home: const SplashScreen(), //로딩화면면
     );
   }
 }
