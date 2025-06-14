@@ -5,6 +5,8 @@ import 'package:flutter_final_appproject/screens/interview_screen.dart';
 import 'package:flutter_final_appproject/screens/job_list_screen.dart';
 import 'package:flutter_final_appproject/screens/policy_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webview_flutter_android/webview_flutter_android.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,6 +16,7 @@ void main() async {
   } catch (e) {
     print("❗ .env 파일 로딩 실패: $e");
   }
+  WebViewPlatform.instance = AndroidWebViewPlatform();
 
   runApp(const MyApp());
 }

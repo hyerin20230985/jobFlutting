@@ -8,6 +8,7 @@ class JobPosting {
   final String salary;
   final DateTime postedDate;
   final String category;
+  final String detailUrl;
 
   JobPosting({
     required this.id,
@@ -19,6 +20,7 @@ class JobPosting {
     required this.salary,
     required this.postedDate,
     required this.category,
+    required this.detailUrl,
   });
 
   factory JobPosting.fromJson(Map<String, dynamic> json) {
@@ -32,6 +34,7 @@ class JobPosting {
       salary: json['salary'],
       postedDate: DateTime.parse(json['postedDate']),
       category: json['category'],
+      detailUrl: json['detailUrl'],
     );
   }
 
@@ -46,6 +49,7 @@ class JobPosting {
       'salary': salary,
       'postedDate': postedDate.toIso8601String(),
       'category': category,
+      'detailUrl': detailUrl,
     };
   }
 }
