@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,6 +13,7 @@ class SplashScreen extends StatefulWidget {
 
 class SplashScreenState extends State<SplashScreen> {
   double _progress = 0.0;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   void initState() {
@@ -21,6 +24,7 @@ class SplashScreenState extends State<SplashScreen> {
           _progress += 0.01;
         } else {
           timer.cancel();
+          // 스플래시 화면 이후 바로 MainScreen으로 이동
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => const MainScreen()),
