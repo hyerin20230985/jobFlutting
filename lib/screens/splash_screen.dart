@@ -40,7 +40,7 @@ class SplashScreenState extends State<SplashScreen> {
             Image.asset('images/beg.png', height: 120),
             const SizedBox(height: 20),
             const Text(
-              '청취네',
+              '청취내',
               style: TextStyle(
                 fontSize: 30,
                 color: Colors.blueGrey,

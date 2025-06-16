@@ -6,6 +6,8 @@ import 'package:flutter_final_appproject/screens/job_list_screen.dart';
 import 'package:flutter_final_appproject/screens/policy_screen.dart';
 import 'package:flutter_final_appproject/screens/splash_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 
@@ -17,6 +19,9 @@ void main() async {
   } catch (e) {
     print("❗ .env 파일 로딩 실패: $e");
   }
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   WebViewPlatform.instance = AndroidWebViewPlatform();
 
   runApp(const MyApp());
